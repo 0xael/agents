@@ -1,0 +1,23 @@
+{
+  "skill_name": "code-review-ts",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "hey can you review srv/core/ratelimit/rate-limit-service.ts? I want to know if there are any bugs or performance issues before we ship this to prod",
+      "expected_output": "Should read the file, identify its role as a rate-limiting service using Redis, trace the data flow, and flag any issues around error handling, Redis connection failures, race conditions in the sliding window logic, or missing edge cases. Should reference specific line numbers.",
+      "files": ["/Users/SAPDevelop/appl-vuln-backend/srv/core/ratelimit/rate-limit-service.ts"]
+    },
+    {
+      "id": 2,
+      "prompt": "check srv/core/ratelimit/ratelimit-middleware.ts for anything sketchy, especially around security. this is the middleware that sits in front of our API endpoints",
+      "expected_output": "Should read the file, understand it as Express/CAP middleware for rate limiting, and look for security issues like header spoofing (X-Forwarded-For trust), bypass vectors, missing validation of inputs, and whether rate limit responses leak information. Should reference specific line numbers.",
+      "files": ["/Users/SAPDevelop/appl-vuln-backend/srv/core/ratelimit/ratelimit-middleware.ts"]
+    },
+    {
+      "id": 3,
+      "prompt": "take a look at srv/core/redis.ts - our static analyzer flagged something on line 23 but I'm not sure if it's a real issue. can you do a full review while you're at it?",
+      "expected_output": "Should read the file, identify the throw-in-event-listener pattern on line 23 as a real concern (unhandled exception in cds.on bootstrap callback), and suggest replacing with LOG.error + process.exit(1). Should also review the rest of the file for connection handling, error recovery, and shutdown behavior. Should reference specific line numbers.",
+      "files": ["/Users/SAPDevelop/appl-vuln-backend/srv/core/redis.ts"]
+    }
+  ]
+}
