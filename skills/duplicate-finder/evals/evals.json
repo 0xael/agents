@@ -1,0 +1,23 @@
+{
+  "skill_name": "duplicate-finder",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I've got a ton of junk piling up in my Downloads folder, pretty sure there are a bunch of duplicate files in there. Can you scan ~/Downloads and show me what's duplicated? I want to clean it up but don't want to accidentally lose anything important.",
+      "expected_output": "Should run the find_duplicates.py script on ~/Downloads, present duplicate groups clearly with file sizes and dates, and ask for user confirmation before any deletion.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I need to check /tmp/test-dupes for any identical files — I think I accidentally copied some stuff multiple times and renamed them. Find the duplicates and help me get rid of them.",
+      "expected_output": "Should run the script on /tmp/test-dupes, detect duplicates even if renamed (via content hash), present results, and require explicit user approval before deleting.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Can you scan my Documents folder for duplicate files? But I just want to see what's there — don't delete anything yet, I need to review them first myself.",
+      "expected_output": "Should run the script on ~/Documents, present the duplicate groups clearly, and respect the user's wish to not delete — should not offer to delete or push for deletion.",
+      "files": []
+    }
+  ]
+}
